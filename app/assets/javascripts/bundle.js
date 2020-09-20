@@ -772,6 +772,9 @@ __webpack_require__.r(__webpack_exports__);
 var MapDispatchToProps = function MapDispatchToProps(dispatch, _ref) {
   var todo = _ref.todo;
   return {
+    requestSteps: function requestSteps() {
+      return dispatch(Object(_actions_step_actions__WEBPACK_IMPORTED_MODULE_3__["requestSteps"])(todo.id));
+    },
     destroyTodo: function destroyTodo() {
       return dispatch(Object(_actions_todo_actions__WEBPACK_IMPORTED_MODULE_2__["deleteTodo"])(todo));
     }
