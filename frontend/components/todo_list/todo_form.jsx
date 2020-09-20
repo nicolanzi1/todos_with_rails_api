@@ -1,4 +1,3 @@
-import { uniqueId } from '../../util/id_generator';
 import React from 'react';
 import ErrorList from './error_list';
 
@@ -20,7 +19,7 @@ export default class TodoForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        const todo = Object.assign({}, this.state, { id: uniqueId() });
+        const todo = Object.assign({}, this.state);
         this.props.createTodo({ todo }).then(
         () => this.setState({
             title: "",
@@ -32,7 +31,7 @@ export default class TodoForm extends React.Component {
     render() {
         return (
             <form className="todo-form" onSubmit={ this.handleSubmit }>
-                {/* <ErrorList errors={ this.props.errors } /> */}
+                <ErrorList errors={ this.props.errors } />
                 <label>Title:
                     <input
                         className="input"

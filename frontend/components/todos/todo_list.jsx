@@ -8,12 +8,12 @@ export default class TodoList extends React.Component {
     }
     
     render() {
-        const { todos, createTodo, receiveTodo, errors } = this.props;
+        const { todos, createTodo, updateTodo, errors } = this.props;
         const todoItems = todos.map(todo => (
             <TodoListItem
-                key={`todo-list-items${todo.id}`}
-                todo={todo}
-                receiveTodo={ receiveTodo } />
+                key={ todo.id }
+                todo={ todo }
+                updateTodo={ updateTodo } />
         ));
 
         return (
@@ -22,7 +22,6 @@ export default class TodoList extends React.Component {
                 <ul className="todo-list">
                     { todoItems }
                 </ul>
-                <TodoForm receiveTodo={ receiveTodo } />
             </div>
         );
     }

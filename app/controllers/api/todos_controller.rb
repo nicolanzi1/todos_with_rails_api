@@ -32,8 +32,11 @@ class Api::TodosController < ApplicationController
       render json: @todo.errors.full_messages, status: 422
     end
   end
+
+  private
+
+  def todo_params
+    params.require(:todo).permit(:title, :body, :done)
+  end
 end
 
-def todo_params
-  params.require(:todo).permit(:title, :body, :done)
-end

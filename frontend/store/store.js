@@ -6,10 +6,8 @@ const configureStore = (preloadedState = {}) => {
     const store = createStore(
         rootReducer,
         preloadedState,
-        applyMiddleware(thunkMiddleware));
-    store.subscribe(() => {
-        localStorage.state = JSON.stringify(store.getState());
-    });
+        applyMiddleware(thunkMiddleware)
+    );
     return store;
 }
 

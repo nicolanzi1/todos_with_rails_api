@@ -1,17 +1,18 @@
 # == Schema Information
 #
-# Table name: todos
+# Table name: steps
 #
 #  id         :integer          not null, primary key
-#  body       :string           not null
-#  done       :boolean          not null
-#  title      :string           not null
+#  body       :string
+#  done       :boolean
+#  title      :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  todo_id    :integer
 #
 require 'test_helper'
 
-class TodoTest < ActiveSupport::TestCase
+class StepTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

@@ -5,21 +5,20 @@ export const RECEIVE_TODOS = "RECEIVE_TODOS";
 export const RECEIVE_TODO = "RECEIVE_TODO";
 export const REMOVE_TODO = "REMOVE_TODO";
 export const TODO_ERROR = "TODO_ERROR";
-export const FETCH_TODOS = "FETCH_TODOS";
 
 export const receiveTodos = todos => ({
     type: RECEIVE_TODOS,
-    todos,
+    todos
 });
 
 export const receiveTodo = todo => ({
     type: RECEIVE_TODO,
-    todo,
+    todo
 });
 
 export const removeTodo = todo => ({
     type: REMOVE_TODO,
-    todo,
+    todo
 });
 
 export const todoError = error => ({
@@ -36,13 +35,13 @@ export const fetchTodo = id => (
 );
 
 export const createTodo = todo => dispatch => (
-    TodoAPIUtil.createTodo(todo).then(todo => dispatch(receiveTodo(todo)))
+    TodoAPIUtil.createTodo(todo)
+    .then(todo => { dispatch(receiveTodo(todo)); dispatch(clearErrors()) },
+    err => dispatch(receiveErrors(err.responseJSON)))
 );
 
 export const updateTodo = todo => dispatch => (
-    TodoAPIUtil.updateTodo(todo)
-    .then(todo => { dispatch(receiveTodo(todo)); dispatch(clearErrors()) }),
-    err => dispatch(receiveErrors(err.responseJSON))
+    TodoAPIUtil.updateTodo(todo).then(todo => dispatch(receiveTodo(todo)))
 );
 
 export const deleteTodo = todo => dispatch => (
