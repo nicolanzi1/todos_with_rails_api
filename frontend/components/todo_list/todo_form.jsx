@@ -7,10 +7,20 @@ export default class TodoForm extends React.Component {
         this.state = {
             title: "",
             body: "",
-            done: false
+            tag_names: [],
+            done: false,
+            newTag: ""
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.addTag = this.addTag.bind(this);
+    }
+
+    addTag(e) {
+        this.setState({
+            tag_names: [ ...this.state.tag_names, this.state.newTag ],
+            newTag: ""
+        });
     }
 
     update(property) {
@@ -23,37 +33,68 @@ export default class TodoForm extends React.Component {
         this.props.createTodo({ todo }).then(
         () => this.setState({
             title: "",
-            body: ""
+            body: "",
+            tag_names: []
             })
         );
     }
 
+    removeTag(idx) {
+        this.setState({
+            tag_names: this.state.tag_names.filter((_, index) => index !== idx)
+        });
+    }
+
     render() {
+        const tag_names = this.state.tag_names.map((tag, idx) => {
+            const clickHandler = () => this.removeTag(idx);
+            return <li key={ idx } onClick={ clickHandler }>{ tag }</li>
+        });
+
         return (
-            <form className="todo-form" onSubmit={ this.handleSubmit }>
-                <ErrorList errors={ this.props.errors } />
-                <label>Title:
-                    <input
-                        className="input"
-                        ref="title"
-                        value={ this.state.title }
-                        placeholder="Call mom..."
-                        onChange={ this.update('title') }
-                        required/>
-                </label>
-                <label>Body:
-                    <textarea
-                        className="input"
-                        ref="body"
-                        cols="20"
-                        value={ this.state.body }
-                        rows="5"
-                        placeholder="Add an item to your list here..."
-                        onChange={ this.update('body') }
-                        required></textarea>
-                </label>
-                <button className="create-button">Create Todo!</button>
-            </form>
+          <form className="todo-form" onSubmit={this.handleSubmit}>
+            <ErrorList errors={this.props.errors} />
+            <label>
+              Title:
+              <input
+                className="input"
+                ref="title"
+                value={this.state.title}
+                placeholder="Call mom..."
+                onChange={this.update("title")}
+                required
+              />
+            </label>
+            <label>
+              Body:
+              <textarea
+                className="input"
+                ref="body"
+                cols="20"
+                value={this.state.body}
+                rows="5"
+                placeholder="Add an item to your list here..."
+                onChange={this.update("body")}
+                required
+              ></textarea>
+            </label>
+            <label>
+              Tags
+              <input
+                className="input"
+                placeholder="Enter a new tag"
+                onChange={this.update("newTag")}
+                value={this.state.newTag}/>
+              <button type="button" className="button" onClick={this.addTag}>
+                Add Tag
+              </button>
+            </label>
+            <ul className="tag-list">
+                { tag_names }
+            </ul>
+
+            <button className="create-button">Create Todo!</button>
+          </form>
         );
     }
 };
