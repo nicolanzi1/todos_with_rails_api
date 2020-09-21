@@ -406,9 +406,7 @@ var StepForm = /*#__PURE__*/function (_React$Component) {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       e.preventDefault();
-      var step = Object.assign({}, this.state, {
-        id: uniqueId()
-      });
+      var step = Object.assign({}, this.state);
       this.props.createStep(this.props.todo_id, step).then(this.setState({
         title: "",
         body: ""
@@ -631,8 +629,8 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, _ref) {
     destroyStep: function destroyStep() {
       return dispatch(Object(_actions_step_actions__WEBPACK_IMPORTED_MODULE_2__["destroyStep"])(step));
     },
-    updateStep: function updateStep(_updateStep) {
-      return dispatch(_updateStep(_updateStep));
+    updateStep: function updateStep() {
+      return dispatch(Object(_actions_step_actions__WEBPACK_IMPORTED_MODULE_2__["updateStep"])(_actions_step_actions__WEBPACK_IMPORTED_MODULE_2__["updateStep"]));
     }
   };
 };
@@ -1462,8 +1460,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var configureStore = function configureStore() {
   var preloadedState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  var store = Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers_root_reducer__WEBPACK_IMPORTED_MODULE_1__["default"], preloadedState, Object(redux__WEBPACK_IMPORTED_MODULE_0__["applyMiddleware"])(_middleware_thunk__WEBPACK_IMPORTED_MODULE_2__["default"]));
-  return store;
+  return Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers_root_reducer__WEBPACK_IMPORTED_MODULE_1__["default"], preloadedState, Object(redux__WEBPACK_IMPORTED_MODULE_0__["applyMiddleware"])(_middleware_thunk__WEBPACK_IMPORTED_MODULE_2__["default"]));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (configureStore);
@@ -1512,6 +1509,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createStep", function() { return createStep; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateStep", function() { return updateStep; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "destroyStep", function() { return destroyStep; });
+$.ajaxSetup({
+  headers: {
+    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+  }
+});
 var fetchSteps = function fetchSteps(todo_id) {
   return $.ajax({
     method: 'GET',
@@ -1559,6 +1561,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createTodo", function() { return createTodo; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateTodo", function() { return updateTodo; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "destroyTodo", function() { return destroyTodo; });
+$.ajaxSetup({
+  headers: {
+    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+  }
+});
 var fetchTodos = function fetchTodos() {
   return $.ajax({
     method: 'GET',

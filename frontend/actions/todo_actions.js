@@ -36,7 +36,7 @@ export const fetchTodo = id => (
 
 export const createTodo = todo => dispatch => (
     TodoAPIUtil.createTodo(todo)
-    .then(todo => { dispatch(receiveTodo(todo)); dispatch(clearErrors()) },
+    .then(todo => { dispatch(receiveTodo(todo)); dispatch(clearErrors())},
     err => dispatch(receiveErrors(err.responseJSON)))
 );
 

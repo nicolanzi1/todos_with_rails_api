@@ -5,10 +5,17 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+User.destroy_all
 Todo.destroy_all
 Step.destroy_all
 
+guest = User.create!(
+  username: 'Guest',
+  password: 'starwars'
+)
+
 todo0 = Todo.create!(
+  user: guest,
   title: 'Pass all the assessments',
   body: 'I am capable of crushing every assessment if I study enough',
   done: false
@@ -52,6 +59,7 @@ step06 = Step.create!(
 )
 
 todo1 = Todo.create!(
+  user: guest,
   title: 'Get a job',
   body: 'I will become employed',
   done: false
@@ -94,6 +102,7 @@ step16 = Step.create!(
 )
 
 todo2 = Todo.create!(
+  user: guest,
   title: 'Maintain personal hygiene',
   body: 'I want to be a sparkling human',
   done: false
@@ -119,12 +128,14 @@ step22 = Step.create!(
 )
 
 todo3 = Todo.create!(
+  user: guest,
   title: 'Exercise',
   body: 'I will exercise more than my typing fingers',
   done: false
 )
 
 todo4 = Todo.create!(
+  user: guest,
   title: 'Contemplate the meaning of life',
   body: 'between homeworks and readings',
   done: false
@@ -149,6 +160,7 @@ step42 = Step.create!(
 )
 
 todo5 = Todo.create!(
+  user: guest,
   title: 'Learn how to make a variety of noodle dishes',
   body: 'noodles make me feel happy and loved',
   done: false

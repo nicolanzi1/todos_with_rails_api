@@ -2,7 +2,7 @@
 #
 # Table name: steps
 #
-#  id         :integer          not null, primary key
+#  id         :bigint           not null, primary key
 #  body       :string
 #  done       :boolean
 #  title      :string
@@ -17,4 +17,8 @@ class Step < ApplicationRecord
     after_initialize { self.done = false if self.done.nil? }
 
     belongs_to :todo
+
+    has_one :user,
+        through: :todo,
+        source: :user
 end

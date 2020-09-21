@@ -1,3 +1,9 @@
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+
 export const fetchSteps = todo_id => (
     $.ajax({
         method: 'GET',

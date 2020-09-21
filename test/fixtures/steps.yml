@@ -2,7 +2,7 @@
 #
 # Table name: steps
 #
-#  id         :integer          not null, primary key
+#  id         :bigint           not null, primary key
 #  body       :string
 #  done       :boolean
 #  title      :string
