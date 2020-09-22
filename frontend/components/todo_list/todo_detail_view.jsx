@@ -1,5 +1,4 @@
 import React from 'react';
-import StepList from '../step_list/step_list';
 
 import StepListContainer from '../step_list/step_list_container';
 
@@ -14,9 +13,12 @@ export default class TodoDetailView extends React.Component {
             <div>
                 <p className="todo-body">{todo.body}</p>
                 <StepListContainer todo_id={ todo.id } />
-                <button
-                className="delete-button"
-                onClick={ destroyTodo }>Delete Todo</button>
+                <button className="delete-button" onClick={ destroyTodo }>
+                    Delete Todo
+                </button>
+                <ul className="tag-list">
+                    { todo.tags.map(tag => <li key={ tag.id }>{ tag.name }</li>) }
+                </ul>
             </div>
         );
     }

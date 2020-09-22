@@ -90,17 +90,17 @@
 /*!*******************************************!*\
   !*** ./frontend/actions/error_actions.js ***!
   \*******************************************/
-/*! exports provided: RECEIVE_ERRORS, CLEAR_ERRORS, receiveErrors, clearErrors */
+/*! exports provided: CLEAR_ERRORS, RECEIVE_ERRORS, receiveErrors, clearErrors */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_ERRORS", function() { return RECEIVE_ERRORS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CLEAR_ERRORS", function() { return CLEAR_ERRORS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_ERRORS", function() { return RECEIVE_ERRORS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveErrors", function() { return receiveErrors; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "clearErrors", function() { return clearErrors; });
-var RECEIVE_ERRORS = "RECEIVE_ERRORS";
 var CLEAR_ERRORS = "CLEAR_ERRORS";
+var RECEIVE_ERRORS = "RECEIVE_ERRORS";
 var receiveErrors = function receiveErrors(errors) {
   return {
     type: RECEIVE_ERRORS,
@@ -629,8 +629,8 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, _ref) {
     destroyStep: function destroyStep() {
       return dispatch(Object(_actions_step_actions__WEBPACK_IMPORTED_MODULE_2__["destroyStep"])(step));
     },
-    updateStep: function updateStep() {
-      return dispatch(Object(_actions_step_actions__WEBPACK_IMPORTED_MODULE_2__["updateStep"])(_actions_step_actions__WEBPACK_IMPORTED_MODULE_2__["updateStep"]));
+    updateStep: function updateStep(updatedStep) {
+      return dispatch(Object(_actions_step_actions__WEBPACK_IMPORTED_MODULE_2__["updateStep"])(updatedStep));
     }
   };
 };
@@ -681,8 +681,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return TodoDetailView; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _step_list_step_list__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../step_list/step_list */ "./frontend/components/step_list/step_list.jsx");
-/* harmony import */ var _step_list_step_list_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../step_list/step_list_container */ "./frontend/components/step_list/step_list_container.jsx");
+/* harmony import */ var _step_list_step_list_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../step_list/step_list_container */ "./frontend/components/step_list/step_list_container.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -704,7 +703,6 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
 
 
 
@@ -733,12 +731,18 @@ var TodoDetailView = /*#__PURE__*/function (_React$Component) {
           destroyTodo = _this$props.destroyTodo;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "todo-body"
-      }, todo.body), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_step_list_step_list_container__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      }, todo.body), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_step_list_step_list_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
         todo_id: todo.id
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "delete-button",
         onClick: destroyTodo
-      }, "Delete Todo"));
+      }, "Delete Todo"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        className: "tag-list"
+      }, todo.tags.map(function (tag) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          key: tag.id
+        }, tag.name);
+      })));
     }
   }]);
 
@@ -935,8 +939,7 @@ var TodoForm = /*#__PURE__*/function (_React$Component) {
         value: this.state.body,
         rows: "5",
         placeholder: "Add an item to your list here...",
-        onChange: this.update("body"),
-        required: true
+        onChange: this.update("body")
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Tags", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         className: "input",
         placeholder: "Enter a new tag",
@@ -1084,8 +1087,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return TodoList; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _todo_list_todo_form__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../todo_list/todo_form */ "./frontend/components/todo_list/todo_form.jsx");
-/* harmony import */ var _todo_list_todo_list_item__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../todo_list/todo_list_item */ "./frontend/components/todo_list/todo_list_item.jsx");
+/* harmony import */ var _todo_list_todo_list_item__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../todo_list/todo_list_item */ "./frontend/components/todo_list/todo_list_item.jsx");
+/* harmony import */ var _todo_list_todo_form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../todo_list/todo_form */ "./frontend/components/todo_list/todo_form.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1137,13 +1140,13 @@ var TodoList = /*#__PURE__*/function (_React$Component) {
           updateTodo = _this$props.updateTodo,
           errors = _this$props.errors;
       var todoItems = todos.map(function (todo) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_todo_list_todo_list_item__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_todo_list_todo_list_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
           key: todo.id,
           todo: todo,
           updateTodo: updateTodo
         });
       });
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_todo_list_todo_form__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_todo_list_todo_form__WEBPACK_IMPORTED_MODULE_2__["default"], {
         createTodo: createTodo,
         errors: errors
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
@@ -1579,7 +1582,7 @@ var fetchTodo = function fetchTodo() {
   });
 };
 var createTodo = function createTodo(todo) {
-  $.ajax({
+  return $.ajax({
     method: 'POST',
     url: '/api/todos',
     data: todo

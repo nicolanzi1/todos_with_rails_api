@@ -54,8 +54,7 @@ export default class TodoForm extends React.Component {
         return (
           <form className="todo-form" onSubmit={this.handleSubmit}>
             <ErrorList errors={this.props.errors} />
-            <label>
-              Title:
+            <label>Title:
               <input
                 className="input"
                 ref="title"
@@ -65,8 +64,7 @@ export default class TodoForm extends React.Component {
                 required
               />
             </label>
-            <label>
-              Body:
+            <label>Body:
               <textarea
                 className="input"
                 ref="body"
@@ -75,7 +73,6 @@ export default class TodoForm extends React.Component {
                 rows="5"
                 placeholder="Add an item to your list here..."
                 onChange={this.update("body")}
-                required
               ></textarea>
             </label>
             <label>

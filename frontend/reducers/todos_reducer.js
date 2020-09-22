@@ -1,7 +1,8 @@
 import { RECEIVE_TODOS,
          RECEIVE_TODO, 
          REMOVE_TODO, 
-         TODO_ERROR } from '../actions/todo_actions';
+         TODO_ERROR,
+} from '../actions/todo_actions';
 
 const todosReducer = (state = {}, action) => {
   Object.freeze(state);
